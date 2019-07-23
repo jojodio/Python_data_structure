@@ -54,4 +54,78 @@ class Llist:
             p.next = elem
         return
 
+
+    # delete the last element and return
+    def pop_last(self):
+        if self._head == None:
+            print("the list is empty")
+            return
+        else:
+            p = self._head
+            while p.next.next:
+                p = p.next
+            e = p.next.elem
+            p.next = None
+            return e
+
+    #the size of list
+    def size(self):
+        size = 0
+        p = self._head
+        while p.next:
+            size += 1
+            p = p.next
+        return size
+
+    def find(self, prep):
+        if self._head == None:
+            print("the list is empty")
+        else:
+            p = self._head
+            while p:
+                if prep(p.elem):
+                    return p.elem
+                else:
+                    p = p.next
+        return
+
+    # remove a element by index
+    def remove(self, i):
+        if self.size() <= i:
+            print("please input a small i".format(i))
+        elif i == 0:
+            if self._head.next == None:
+                self._head = None
+            else:
+                self._head = self._head.next
+        elif i == (self.size()-1):
+            p = self._head
+            while p.next.next:
+                p = p.next
+            p.next = None
+        else:
+            p = self._head
+            index = 0
+            while index < (i-1):
+                p = p.next
+            p.next = p.next.next
+        return
+
+    #add a element by index
+    def add(self, i, elem):
+        if i >= self.size():
+            print("please input a small i".format(i))
+        elif i == 0:
+            self._head = LNode(elem,self._head)
+        else:
+            index = 0
+            p = self._head
+            while index < (i-1):
+                p = p.next
+            p.next.next = p.next
+            p.next = elem
+        return
+
     
+
+
