@@ -126,6 +126,30 @@ class Llist:
             p.next = elem
         return
 
-    
+class Llist1(Llist):
+    def __init__(self):
+        Llist.__init__(self)
+        self._rear = None
 
+    def prepend(self, elem):
+        if self._head == None:
+            self._head = LNode(elem, self)
+            self._rear = self._head
+        else:
+            self._head = LNode(elem, self)
+
+    def pop_last(self):
+        if self._head == None:
+            print("the linked list is empty")
+        p = self._head
+        if p.next == None:
+            e = p.elem
+            self._head = None
+            return e
+        while p.next.next:
+            p = p.next
+        e = p.next.next
+        p.next = None
+        self._rear = p
+        return e
 
